@@ -1,14 +1,3 @@
-
-├── docs/                    # 存放知识文档
-│   ├── manual.pdf
-│   └── policies.txt
-├── models/                  # 句向量模型
-│   ├── all-MiniLM-L6-v2/    #  Sentence-Transformers的句向量模型 本地模型 无需再下载
-├── vector_store/            # FAISS 向量库（自动生成）
-├── ingest.py                # 文档处理脚本
-└── rag.py                   # RAG 主程序
-└── README.md
-
 # 项目说明
 用本地的deepseek r1+本地知识库实现QA问答个性化
 
