@@ -1,4 +1,4 @@
-.
+
 ├── docs/                    # 存放知识文档
 │   ├── manual.pdf
 │   └── policies.txt
