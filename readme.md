@@ -8,7 +8,7 @@ ollama
 # 安装依赖
 ## 下载deepseek-R1 模型 LLM 模型
 ollama download deepseek-R1:1.5B
-## 下载向量模型 sentence-transformers/all-MiniLM-L6-v2
+## 下载嵌入模型 sentence-transformers/all-MiniLM-L6-v2
 pip install sentence-transformers
 python download_model.py
 ## 创建虚拟环境（推荐）
