@@ -20,11 +20,10 @@ source rag-env/bin/activate
 pip install -r requirements.txt
 
 # 构建知识库
-准备文档
-将文档（如 PDF、TXT）放入 docs/ 目录。
+## 准备文档
+将文档（如 PDF、TXT）放入 ./docs 目录。
 
-文档加载与分割
-执行 ingest.py：
+## 文档导入向量数据库
 python ingest.py
 
 # 提问运行demo
