@@ -1,5 +1,5 @@
 # 项目说明
-用本地的deepseek r1+本地知识库实现QA问答个性化
+用本地的deepseek r1+本地知识库实现基于行业领域专业认知的QA问答
 
 # 项目依赖说明 
 python3.9
@@ -13,6 +13,7 @@ pip install sentence-transformers
 python download_model.py
 ## 创建虚拟环境（推荐）
 python -m venv rag-env
+## 进入虚拟空间
 source rag-env/bin/activate
 
 ## 安装依赖包
@@ -28,9 +29,3 @@ python ingest.py
 
 # 提问运行demo
 python rag.py
-
-# 重新进入已创建的虚拟空间
-## 进入虚拟空间
-source rag-env/bin/activate
-## 安装依赖包
-pip install -r requirements.txt
