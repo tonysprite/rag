@@ -1,0 +1,19 @@
+#进入虚拟空间
+virtual:
+	@echo "Activating virtual environment..."
+	@bash -c "source rag-env/bin/activate"
+
+# 安装依赖
+install:
+	@echo "Installing dependencies..."
+	@bash -c "pip install -r requirements.txt"
+	
+# 更新知识库
+update:
+	@echo "Updating documentation..."
+	@bash -c "/usr/local/bin/python3.9 ingest.py"
+
+# 运行程序
+run:
+	@echo "Activating virtual environment..."
+	@bash -c "/usr/local/bin/python3.9 rag.py"
