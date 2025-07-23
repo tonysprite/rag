@@ -1,0 +1,10 @@
+POST /query HTTP/1.1
+Host: localhost:9000
+User-Agent: Apifox/1.0.0 (https://apifox.com)
+Content-Type: application/json
+Content-Length: 53
+
+{
+    "role":"qchat",
+    "query":"广播消息的房间ID是多少"
+}
