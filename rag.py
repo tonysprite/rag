@@ -10,7 +10,7 @@ vector_store = FAISS.load_local(
     "vector_store", 
     embeddings,
     allow_dangerous_deserialization=True
-    )
+)
 
 # 初始化本地 LLM（需先安装 Ollama）
 llm = OllamaLLM(model="deepseek-R1:1.5B")  # 或 "mistral"、"gemma" 用ollma list看本地都有啥模型
@@ -22,12 +22,32 @@ qa_chain = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
-# 循环运行到提问环节
-while True:
-    print("请输入问题（输入 'exit' 退出）：")
-    query = input()
-    if query.lower() == 'exit':
-        break
-    response = qa_chain.invoke({"query": query})
-    print("答案：", response["result"])
-    print("来源：", response['source_documents'][0].metadata['source'])
+# 创建 Flask 应用
+app = Flask(__name__)
+
+@app.route('/query', methods=['POST'])
+def query():
+    data = request.get_json()
+    if not data or 'query' not in data:
+        return jsonify({"error": "Missing 'query' field in request"}), 400
+
+    user_query = data['query']
+    role = data.get('role', '')  # 获取 role 参数，若不存在则为空字符串
+
+    # 拼接 query 内容
+    if role:
+        prefixed_query = f"你是一个专业的{role}，{user_query}"
+    else:
+        prefixed_query = user_query
+
+    # 打印一下拼接后的 query
+    print(f"Prefixed query: {prefixed_query}")
+    response = qa_chain.invoke({"query": prefixed_query})
+    
+    return jsonify({
+        "answer": response["result"],
+        "source": response['source_documents'][0].metadata['source']
+    })
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=9000)
