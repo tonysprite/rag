@@ -1,30 +1,9 @@
 # 项目说明
 用本地的deepseek r1+本地知识库实现基于行业领域专业认知的QA问答
 
-# 项目依赖说明 
-python3.9
-ollama
+# 如何运行
+参考MakeFile指令，包含了从入坑到运行提问的完整流程
+example: make run
 
-# 安装依赖
-## 下载deepseek-R1 模型 LLM 模型
-ollama download deepseek-R1:1.5B
-## 下载嵌入模型 sentence-transformers/all-MiniLM-L6-v2
-pip install sentence-transformers
-python download_model.py
-## 创建虚拟环境（推荐）
-python -m venv rag-env
-## 进入虚拟空间
-source rag-env/bin/activate
-
-## 安装依赖包
-pip install -r requirements.txt
-
-# 构建知识库
-## 准备文档
-将文档（如 PDF、TXT）放入 ./docs 目录。
-
-## 文档导入向量数据库
-python ingest.py
-
-# 提问运行demo
-python rag.py
+# 客户端调用
+参考 tests/qa.http
