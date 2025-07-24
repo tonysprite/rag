@@ -32,6 +32,11 @@ update:
 	@echo "Updating documentation..."
 	@bash -c "/usr/local/bin/python3.9 ingest.py"
 
+# 更新角色列表
+update-roles:
+	@echo "Updating roles..."
+	@bash -c "/usr/local/bin/python3.9 extract_roles.py"
+
 # 运行程序
 run:
 	@echo "Activating virtual environment..."

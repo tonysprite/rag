@@ -3,6 +3,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_ollama import OllamaLLM
 from flask import Flask, request, jsonify
+from roles import ROLE_LIST
 
 # 加载向量库
 embeddings = HuggingFaceEmbeddings(model_name="./models/all-MiniLM-L6-v2_local")
@@ -27,8 +28,7 @@ qa_chain = RetrievalQA.from_chain_type(
 app = Flask(__name__)
 @app.route('/roles', methods=['GET'])
 def get_roles():
-    roles = ["客服", "qchat"]
-    return jsonify({"roles": roles})
+    return jsonify({"roles": ROLE_LIST})
 
 
 @app.route('/query', methods=['POST'])
