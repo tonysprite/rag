@@ -22,8 +22,14 @@ qa_chain = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
+
 # 创建 Flask 应用
 app = Flask(__name__)
+@app.route('/roles', methods=['GET'])
+def get_roles():
+    roles = ["客服", "qchat"]
+    return jsonify({"roles": roles})
+
 
 @app.route('/query', methods=['POST'])
 def query():
@@ -32,11 +38,12 @@ def query():
         return jsonify({"error": "Missing 'query' field in request"}), 400
 
     user_query = data['query']
+    context = data.get('context', '')
     role = data.get('role', '')  # 获取 role 参数，若不存在则为空字符串
 
     # 拼接 query 内容
     if role:
-        prefixed_query = f"你是一个专业的{role}，{user_query}"
+        prefixed_query = f"你是一个专业的{role}，请根据以下已知信息回答用户问题。已知信息：{context}。问题：{user_query}。请用简洁、专业的语言作答："
     else:
         prefixed_query = user_query
 

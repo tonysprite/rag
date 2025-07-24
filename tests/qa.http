@@ -1,3 +1,4 @@
+# 提问
 POST /query HTTP/1.1
 Host: localhost:9000
 Content-Type: application/json
@@ -5,5 +6,12 @@ Content-Length: 53
 
 {
     "role":"qchat",
-    "query":"广播消息的房间ID是多少"
+    "query":"广播消息的房间ID是多少",
+    "context":"Q: 给所有房间发送广播消息用哪个接口？ A: /chatroom/broadcast"
 }
+
+# 获取角色列表
+GET /roles HTTP/1.1
+Host: localhost:9000
+Accept: */*
+Connection: keep-alive
